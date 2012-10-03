@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Game JS com Websockets - djalmaaraujo</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/zenburn.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/default.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+		<style type="text/css">
+		.imagess {
+			border-radius: 10px;
+			background: white !important;
+		}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Used to fade in a background when a specific slide state is reached -->
+			<div class="state-background"></div>
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Game JS</h1>
+					<h3>com Websockets</h3>
+					<h4>@djalmaaraujo - Liferay</h4>
+				</section>
+
+				<section>
+					<h1>Quem sou eu?</h1>
+
+					<img id="foto" src="images/eu.jpg" height="200" />
+
+					<ul>
+						<li>Sistemas para internet (Faculdade Marista/PE)</li>
+						<li>
+							Contribuições:
+							<ul>
+								<li>jQueryBrasil.org</li>
+								<li>YUI Library (YAHOO!)</li>
+								<li>AlloyUI</li>
+								<li>github.com/djalmaaraujo</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2><img src="images/liferay.png" alt="" class="imagess" width="200" /> != Herbalife</h2>
+					<img src="images/liferay-site.png" alt="" height="450" />
+				</section>
+
+				<!-- Example of nested vertical slides -->
+				<section>
+					<section>
+						<h1>Games com <span style="text-decoration: line-through">Flash</span> JS</h1>
+						<h3>Mitos</h3>
+						<img src="images/Flash.png" alt="" style="padding: 10px;"  class="imagess" />
+					</section>
+					<section>
+						<h2>Flash vai morrer?</h2>
+						<h3>Sei lá, o mundo acaba em 2012?</h3>
+						<div class="fragment">Provavelmente NÃO!</div>
+						<small class="fragment">por muitos anos..</small>
+					</section>
+					<section>
+						<h2>Javascript substitui 100% o Flash?</h2>
+						<div class="fragment">Depende do que você está fazendo..</div>
+						<div class="fragment">Provavelmente SIM! Mas..</div>
+						<div class="fragment">Depende do que você está fazendo..</div>
+					</section>
+					<section>
+						<h1>GPU vs CPU</h1>
+						<h3 class="fragment">O Flash é renderizado pela GPU</h3>
+						<h3 class="fragment">O Javascript é renderizado pela CPU</h3>
+						<p class="fragment">E agora javascript?</p>
+					</section>
+					<section data-state="soothe">
+						<h2>WEBGL</h2>
+						<ul>
+							<li>3D + Browser</li>
+							<li>Processamento na GPU, direto na placa de vídeo</li>
+							<li class="fragment">
+								Muito melhor! <br />
+								<center><img src="images/success-kid-bebe-meme-cresceu.jpg" alt="" /></center>
+							</li>
+						</ul>
+					</section>
+					<section data-state="soothe">
+						<h2>WEBGL é o fraco..</h2>
+						<img src="images/webgl/spider.png" class="imagess" alt="" />
+						<br />
+						<a href="http://www.ibiblio.org/e-notes/webgl/deflate/spider.html">Spider</a>
+					</section>
+					<section data-state="soothe">
+						<h2>WEBGL é o fraco..</h2>
+						<a href="http://www.kamibu.com/demos/cloth-simulation/">http://www.kamibu.com/demos/cloth-simulation/</a>
+						<a href="http://www.unid.me/demo/vectorstream/">http://www.unid.me/demo/vectorstream/</a>
+						<a href="http://www.webdev20.pl/skins/default/js/demos/3d_grapher/webgl_ploter.html">http://www.webdev20.pl/skins/default/js/demos/3d_grapher/webgl_ploter.html</a>
+						<a href="http://robchadwick.com/TerrainEditor/">http://robchadwick.com/TerrainEditor/</a>
+					</section>
+					<section>
+						<h2>99% dos Jogos em Flash existentes poderiam ter sido feitos em javascript em muito menos tempo</h2>
+						<h3 class="fragment">Mas na mão? Na tora?</h3>
+						<h4 class="fragment">SIM! <br /> Sem provavelmente..</h4>
+						<img src="images/jogos-flash.jpg" alt="" class="fragment imagess" id="src">
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1>Engines em Javascript</h1>
+						<p>
+							Fazendo muito mais <br /> sem reinventar a roda!
+						</p>
+					</section>
+					<section>
+						<h2><img src="images/engines/crafty.png" class="imagess" alt="" /></h2>
+						<ul>
+							<li>Cross-browser</li>
+							<li>Canvas or DOM</li>
+							<li>Sprite map support</li>
+							<li>Collision detection</li>
+							<li>Sounds, animations, effects and other <span style="color: pink">sexy</span> </li>
+							<li>FREE</li>
+						</ul>
+						<br /><br />
+						<center class="fragment"><a href="http://craftyjs.com">SITE</a> | <a href="http://craftyjs.com/demos/asteroids/">DEMO</a></center>
+					</section>
+
+					<section>
+						<h2><img src="images/engines/impactjs.png" class="imagess" width="350" alt="" /></h2>
+						<ul>
+							<li>Cross-browser</li>
+							<li>Great mobile support</li>
+							<li>Debug tools</li>
+							<li>$99</li>
+						</ul>
+						<br /><br />
+						<center class="fragment"><a href="http://impactjs.com/">SITE</a> | <a href="http://playbiolab.com/">DEMO</a></center>
+					</section>
+
+					<section>
+						<h2><img src="images/engines/cocos-logo-happy.png" class="imagess" width="350" alt="" /></h2>
+						<ul>
+							<li>Games em 2D</li>
+							<li>Last features of HTML5 for performance</li>
+							<li>Perfect for physics stuff</li>
+							<li>FREE</li>
+						</ul>
+						<br /><br />
+						<center class="fragment"><a href="http://cocos2d-javascript.org/">SITE</a> | <a href="http://cocos2d-javascript.org/demos/box2d-physics">DEMO</a></center>
+					</section>
+
+					<section>
+						<h2><img src="images/engines/limejs.png" class="imagess" alt="" /></h2>
+						<ul>
+							<li>Fast</li>
+							<li>Touchscreens events</li>
+							<li>Search for native-experience</li>
+							<li>FREE</li>
+						</ul>
+						<br /><br />
+						<center class="fragment"><a href="http://www.limejs.com/">SITE</a> | <a href="http://www.limejs.com/static/zlizer/index.html">DEMO</a></center>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Adobe Edge Tools & Services</h2>
+						<h4>New tools and services for a beautiful, modern web.</h4>
+						<img src="images/edge.png" alt="" class="imagess" id="src" />
+					</section>
+					<section>
+						<h2>Edge Animate</h2>
+						<a href="http://html.adobe.com/edge/animate/showcase.html"><img src="images/edge-animate.png" alt="" class="imagess" id="src"></a>
+					</section>
+				</section>
+
+				<section>
+					<h2>Mas afinal..</h2>
+					<h1 class="fragment">E WebSocket?</h1>
+					<h2 class="fragment">Que agonia é essa?</h2>
+					<h4 class="fragment">Primeiro..</h4>
+				</section>
+
+				<section>
+					<h2>Jogos em AJAX</h2>
+					<ul>
+						<li>Muitos requests</li>
+						<li>Load alto do servidor</li>
+						<li>Tempo de reposta alto</li>
+						<li>Protocolos indevidos para certos tipos de comunicação</li>
+					</ul>
+
+					<img src="images/dog.png" alt="" class="imagess" id="src" height="300" />
+				</section>
+
+				<section>
+					<h2>Modelo padrão para aplicações AJAX</h2>
+					<img src="images/comet-apps.jpg" alt="" class="imagess" id="src">
+				</section>
+
+				<section>
+					<h2>Alternativas para jogos real-time</h2>
+					<ul class="fragment">
+						<li>Adobe® Flash® Socket</li>
+						<li>AJAX long polling</li>
+						<li>AJAX multipart streaming</li>
+						<li>Forever Iframe</li>
+						<li>JSONP Polling</li>
+					</ul>
+					<br /><br />
+					<img src="images/Not-Sure-If-Gusta-Meme-Rage-Face-Template.jpg" alt="" class="imagess fragment" id="src">
+				</section>
+
+				<section>
+					<h1>WebSockets</h1>
+					<h3 class="fragment">Pega o AJAX..</h3>
+					<div class="fragment">
+						<img src="images/ajax12345.png" alt="" class="imagess" id="src" height="200" />
+						<img src="images/ajax.jpeg" alt="" class="imagess" id="src" height="200" />
+						<br /><br />
+						<h3>E coloca ele pra fazer o que ele faz de melhor..</h3>
+					</div>
+				</section>
+
+				<section>
+					<h2>WebSockets</h2>
+					<p>WebSocket represents the next evolutionary step in web communication compared to Comet and Ajax</p>
+					<img src="images/websocket-architecture.jpg" alt="" class="imagess fragment" id="src">
+				</section>
+
+				<section>
+					<h2>Comparativo entre Websockets e Polling quanto ao uso desnecessário da rede</h2>
+					<img src="images/poll-ws-compare.gif" alt="" class="imagess fragment" id="src">
+				</section>
+
+				<section>
+					<h1>WebSockets</h1>
+					<h3 class="fragment">Então eu posso...</h3>
+					<ul class="fragment">
+						<li>Me comunicar em tempo real</li>
+						<li>Ter meus usuários conectados entre-si</li>
+						<li>Transmitir dados rapidamente via JSON</li>
+						<li>Enviar/Receber requisições tanto do servidor como do usuário ao mesmo tempo</li>
+					</ul>
+					<br /><br />
+					<h3 class="fragment">E se unirmos algumas ferramentas + WebSockets para fazer um jogo?</h3>
+				</section>
+
+				<section>
+					<h1>Game JS</h1>
+					<h3>com Websockets</h3>
+					<h4>@djalmaaraujo - Liferay</h4>
+					<br /><br />
+					<h2>Boa noite, vamos iniciar..</h2>
+				</section>
+
+				<section>
+					<section>
+						<h1>O que usar?</h1>
+						<h2>Ferramentas para um jogo com WebSockets + Javascript + Interatividade</h2>
+					</section>
+
+					<section>
+						<h1>NodeJS</h1>
+						<h2 class="fragment">Javascript no servidor</h2>
+						<h4 class="fragment">Você não precisa de outra linguagem que não seja Javascript. <br /><br /> Faça tudo com a mesma sintaxe!</h4>
+						<p class="fragment">HTTP Server/Alta concorrência/Banco de dados/Eventos/Rotas/Frameworks</p>
+					</section>
+
+					<section>
+						<h1>Socket.IO</h1>
+						<h2 class="fragment">The cross-browser WebSocket for realtime apps</h2>
+						<h4 class="fragment">O grande protagonista da noite!</h4>
+						<p class="fragment">WebSockets/Tempo reals/Agilidade/Ótima API/Fall-backs/Interatividade</p>
+					</section>
+
+					<section>
+						<h2>Socket.IO</h2>
+						<h3>Criando um servidor</h3>
+						<code contenteditable>
+							var app = require('http').createServer(handler)
+  , io = require('socket.io').listen(app)
+  , fs = require('fs')
+
+app.listen(80);
+
+function handler (req, res) {
+  fs.readFile(__dirname + '/index.html',
+  function (err, data) {
+    if (err) {
+      res.writeHead(500);
+      return res.end('Error loading index.html');
+    }
+
+    res.writeHead(200);
+    res.end(data);
+  });
+}
+
+io.sockets.on('connection', function (socket) {
+  socket.emit('news', { hello: 'world' });
+  socket.on('my other event', function (data) {
+    console.log(data);
+  });
+});
+						</code>
+					</section>
+
+					<section>
+						<h2>Socket.IO</h2>
+						<h3>Utilizando no cliente</h3>
+						<code contenteditable>
+  var socket = io.connect('http://localhost');
+  socket.on('news', function (data) {
+    console.log(data);
+    socket.emit('my other event', { my: 'data' });
+  });
+						</code>
+					</section>
+
+					<section>
+						<h2>Javascript</h2>
+						<h3>Estudar Padrões / Frameworks / Bibliotecas / WEBGL / Canvas</h3>
+					</section>
+				</section>
+
+				<section>
+					<h2>Como anda o mercado de jogos em javascript?</h2>
+					<a href="http://js13kgames.com/"><img class="imagess" src="images/js13k.png" alt=""></a>
+					<a href="http://ongamestart.com/"><img class="imagess" src="images/onstart.png" alt=""></a>
+					<a href="http://html5games.com/"><img class="imagess" src="images/html5games.png" alt=""></a>
+				</section>
+
+				<section data-state="alert">
+					<h2>Então.. como eu devo fazer meu jogo?</h2>
+					<h3 class="fragment">Como você desejar...</h3>
+					<ul class="fragment">
+						<li>Pode utilizar uma engine ou não</li>
+						<li>Pode ter várias fases ou não</li>
+						<li>Pode até não ter websocket</li>
+					</ul>
+					<br /><br />
+					<h3 class="fragment">Crie e divirta-se com sua própria criação..</h3>
+					<br />
+					<center class="fragment"><a href="#" class="">SOCKETRACE</a></center>
+					<p class="fragment">Let's play?</p>
+				</section>
+
+				<section  data-state="blackout">
+					<h1>Obrigado!</h1>
+					<br />
+					<h4>@djalmaaraujo</h4>
+					<h4>djalma.araujo@gmail.com</h4>
+					<h4>http://www.liferay.com/</h4>
+					<a href="http://www.liferay.com/"><img src="images/liferay.png" class="imagess" alt="" height="90" /></a>
+				</section>
+			</div>
+
+			<!-- The navigational controls UI -->
+			<aside class="controls">
+				<a class="left" href="#">&#x25C4;</a>
+				<a class="right" href="#">&#x25BA;</a>
+				<a class="up" href="#">&#x25B2;</a>
+				<a class="down" href="#">&#x25BC;</a>
+			</aside>
+
+			<!-- Presentation progress bar -->
+			<div class="progress"><span></span></div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+
+				theme: Reveal.getQueryHash().theme || 'default', // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/linear(2d)
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/highlight.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); } },
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'lib/js/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '/socket.io/socket.io.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } },
+					{ src: 'plugin/speakernotes/client.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } },
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
